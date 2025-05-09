@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DQ Analyst Agent</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2 class="copilot-header">
+                <img src="static/jlllogo.png" alt="Logo" class="copilot-logo">
+                <span>DQ Analyst Agent</span>
+            </h2>
+            <button id="newChatBtn"> ⊕ <span style="margin-left:10px">New Chat</button>
+            <h3>Recents</h3>
+            <nav id="chatHistory">
+            </nav>
+        </aside>
+        <main class="chat-area">
+            <div class="welcome-message">   </div>
+            <div class="chat-messages">
+            </div>
+            <div class="chat-input">
+                <textarea placeholder="Ask a question."></textarea>
+                <button class="send-button" onclick="sendMessage()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="19" x2="12" y2="5"></line>
+                        <polyline points="5 12 12 5 19 12"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </main>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
