@@ -68,7 +68,7 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   
     try {
       const response = await fetch(
-        'https://dqagent-fucjdkcxa5chcfbx.eastus2-01.azurewebsites.net/data_quality/',
+        'https://dqagent-fucjdkcxa5chcfbx.eastus2-01.azurewebsites.net/data_quality',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', },
