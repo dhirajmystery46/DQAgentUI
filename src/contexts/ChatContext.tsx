@@ -66,12 +66,12 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
     updateChat(chatId, updatedMessages);
     // Determine endpoint based on message content
-    let endpoint = 'http://127.0.0.1:8000/data_quality/';
+    let endpoint = 'https://dqagent-fucjdkcxa5chcfbx.eastus2-01.azurewebsites.net/data_quality/';
     if (message.toLowerCase().includes('profiling')) {
-      endpoint = 'http://127.0.0.1:8000/data_profiling/';
+      endpoint = 'https://dqagent-fucjdkcxa5chcfbx.eastus2-01.azurewebsites.net/data_profiling/';
     }
     else if (message.toLowerCase().includes('anomaly')) {
-      endpoint = 'http://127.0.0.1:8000/data_anomaly/';
+      endpoint = 'https://dqagent-fucjdkcxa5chcfbx.eastus2-01.azurewebsites.net/data_anomaly/';
     }
 
     try {
