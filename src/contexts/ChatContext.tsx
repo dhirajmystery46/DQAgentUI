@@ -65,10 +65,18 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       //setConversationCounter((prev) => prev + 1);
     }
     updateChat(chatId, updatedMessages);
-  
+    // Determine endpoint based on message content
+    let endpoint = 'http://127.0.0.1:8000/data_quality/';
+    if (message.toLowerCase().includes('profiling')) {
+      endpoint = 'http://127.0.0.1:8000/data_profiling/';
+    }
+    else if (message.toLowerCase().includes('anomaly')) {
+      endpoint = 'http://127.0.0.1:8000/data_anomaly/';
+    }
+
     try {
       const response = await fetch(
-        'https://dqagent-fucjdkcxa5chcfbx.eastus2-01.azurewebsites.net/data_quality',
+        endpoint,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', },
