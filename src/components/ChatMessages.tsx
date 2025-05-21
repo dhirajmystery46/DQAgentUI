@@ -4,6 +4,7 @@ import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
 import ThumbDownAltOutlinedIcon from '@mui/icons-material/ThumbDownAltOutlined';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import EmailIcon from '@mui/icons-material/Email';
+import SettingsIcon from '@mui/icons-material/Settings';
 import DOMPurify from 'dompurify';
 import { marked } from 'marked';
 import { generatePDF } from '../utils/pdfUtils';
@@ -309,6 +310,29 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({ messages, isAgentsPanelOpen
                                                 }}
                                             >
                                                 Send email
+                                            </Button>
+                                            <Button
+                                                variant="contained"
+                                                size="small"
+                                                endIcon={<SettingsIcon />}
+                                                sx={{
+                                                    color: 'white',
+                                                    backgroundColor: '#09779E',
+                                                    '&:hover': {
+                                                        backgroundColor: '#178195',
+                                                    },
+                                                    padding: '6px 12px',
+                                                    fontSize: '14px',
+                                                    textTransform: 'none',
+                                                    fontFamily: 'Source Sans Pro',
+                                                    fontWeight: 400,
+                                                    lineHeight: '20px',
+                                                    letterSpacing: '0%',
+                                                    verticalAlign: 'middle',
+                                                    marginLeft: '8px',
+                                                }}
+                                            >
+                                                Fix Data
                                             </Button>
                                         </Box>
                                     </Box>

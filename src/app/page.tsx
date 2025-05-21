@@ -181,7 +181,7 @@ export default function Home() {
               backgroundColor: '#FAFAFA',
               borderLeft: '1px solid #e0e0e0',
             }}>
-              <AIAgentsPanel isOpen={isAgentsPanelOpen} />
+              <AIAgentsPanel isOpen={isAgentsPanelOpen} runningRules={ isLoading ? inputMessage.toLowerCase().includes("run dq check for property hub") ? ['City is blank', 'State is blank', 'Postal Code void', 'State format invalid' ] :  inputMessage.toLowerCase().includes("run dq check for portfolio") ? ['Notice date blank', 'Rentable Area Blank/Zero'] :[] :[] } isLoading={isLoading} />
             </Box>
           )}
         </Box>
