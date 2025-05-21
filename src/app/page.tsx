@@ -18,6 +18,9 @@ export default function Home() {
   const [inputMessage, setInputMessage] = useState('');
   const [showHeading, setShowHeading] = useState(true);
   const [showPromptLibrary, setShowPromptLibrary] = useState(false);
+  // Add this near your other state declarations
+  const [runningRules, setRunningRules] = useState<string[]>([]);
+
   const { 
     messages, 
     isLoading, 
@@ -51,8 +54,24 @@ export default function Home() {
 
   const handleQuestionClick = (question: string) => {
     setInputMessage(question);
-  };
 
+     // Set appropriate rules based on the question
+  if (question.toLowerCase().includes('run dq check for property hub')) {
+    setRunningRules([
+      'City is blank', 'State is blank', 'Postal Code void', 'State format invalid'
+    ]);
+  } else if (question.toLowerCase().includes('run dq check for portfolio')) {
+    setRunningRules([
+      'Notice date blank', 'Rentable Area Blank/Zero'
+    ]);
+  }
+
+  };
+  useEffect(() => {
+    if (!isLoading) {
+      setRunningRules([]);
+    }
+  }, [isLoading]);
   const handleNewChat = () => {
     originalHandleNewChat();
     setIsInitialState(true);
@@ -181,7 +200,9 @@ export default function Home() {
               backgroundColor: '#FAFAFA',
               borderLeft: '1px solid #e0e0e0',
             }}>
-              <AIAgentsPanel isOpen={isAgentsPanelOpen} runningRules={ isLoading ? inputMessage.toLowerCase().includes("run dq check for property hub") ? ['City is blank', 'State is blank', 'Postal Code void', 'State format invalid' ] :  inputMessage.toLowerCase().includes("run dq check for portfolio") ? ['Notice date blank', 'Rentable Area Blank/Zero'] :[] :[] } isLoading={isLoading} />
+              <AIAgentsPanel isOpen={isAgentsPanelOpen} 
+              runningRules={isLoading ? runningRules : []}
+              isLoading={isLoading} />
             </Box>
           )}
         </Box>
