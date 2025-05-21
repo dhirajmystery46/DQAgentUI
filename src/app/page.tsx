@@ -56,13 +56,22 @@ export default function Home() {
     setInputMessage(question);
 
      // Set appropriate rules based on the question
-  if (question.toLowerCase().includes('run dq check for property hub')) {
+  if (question.toLowerCase().includes('run dq check') && question.toLowerCase().includes('property hub')) {
     setRunningRules([
       'City is blank', 'State is blank', 'Postal Code void', 'State format invalid'
     ]);
-  } else if (question.toLowerCase().includes('run dq check for portfolio')) {
+  } else if (question.toLowerCase().includes('run dq check') && question.toLowerCase().includes('portfolio')) {
     setRunningRules([
       'Notice date blank', 'Rentable Area Blank/Zero'
+    ]);
+  } else if (question.toLowerCase().includes('run data profiling')) {
+    setRunningRules([
+      'Running Data Profiling'
+    ]);
+  }
+  else if (question.toLowerCase().includes('run anomaly detection')) {
+    setRunningRules([
+      'Running Anomaly Detection'
     ]);
   }
 

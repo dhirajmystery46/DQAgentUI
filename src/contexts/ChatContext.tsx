@@ -66,6 +66,7 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
     updateChat(chatId, updatedMessages);
     // Determine endpoint based on message content
+    // Determine endpoint based on message content
     let endpoint = 'https://dqagent-fucjdkcxa5chcfbx.eastus2-01.azurewebsites.net/data_quality';
     if (message.toLowerCase().includes('profiling')) {
       endpoint = 'https://dqagent-fucjdkcxa5chcfbx.eastus2-01.azurewebsites.net/data_profiling';
@@ -133,10 +134,10 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const determineChatName = (message: string): string => {
     const lowercaseMessage = message.toLowerCase();
-    if (lowercaseMessage.includes("analysis") || lowercaseMessage.includes("analyze") || lowercaseMessage.includes("evaluate")) {
-      return "Lease Analysis";
-    } else if (lowercaseMessage.includes("strategy") || lowercaseMessage.includes("strategize") || lowercaseMessage.includes("renegotiation")) {
-      return "Lease Strategy";
+    if (lowercaseMessage.includes("property hub") || lowercaseMessage.includes("property") || lowercaseMessage.includes("hub")) {
+      return "Property Hub";
+    } else if (lowercaseMessage.includes("portfolio") || lowercaseMessage.includes("lease") || lowercaseMessage.includes("lease admin")) {
+      return "Portfolio";
     }else
     return "Data Retrieval";
   };

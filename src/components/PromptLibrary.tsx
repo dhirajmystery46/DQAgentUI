@@ -7,8 +7,11 @@ interface PromptLibraryProps {
 }
 
 const prompts = [
-    "Run DQ Check for property Chicago - 333 W Wacker Dr in property hub.", 
-    "Run DQ Check for New York 330 Madison Avenue property in portfolio.",
+    "Run DQ Check for property '107 Northern Blvd, Suite 201' in property hub.", 
+    "Run DQ Check for Troy Hill_Campus property in portfolio.",
+    "Run DQ Check for property hub",
+    "Run Data Profiling for portfolio",
+    "Run Anomaly Detection for portfolio",
 ];
 
 const PromptLibrary: React.FC<PromptLibraryProps> = ({ onRunPrompt }) => {
