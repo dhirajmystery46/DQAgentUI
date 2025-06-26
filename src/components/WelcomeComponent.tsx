@@ -27,6 +27,8 @@ const WelcomeComponent: React.FC<WelcomeComponentProps> = ({ onQuestionClick }) 
       onQuestionClick(question+' for Property Hub');
     } else if (dataset === 'Portfolio') {
       onQuestionClick(question+' for Portfolio');
+    } else if (dataset === 'Uploaded Dataset') {
+      onQuestionClick(question+' for Uploaded Dataset');
     }
   };
 
@@ -45,10 +47,9 @@ const WelcomeComponent: React.FC<WelcomeComponentProps> = ({ onQuestionClick }) 
       {[
         "Run DQ Check",
         "Run Data Profiling",
-        "Run Anomaly Detection",
       ].map((question, index) => (
         <Box 
-          key={index} 
+          key={index}
           sx={{ 
             border: '1px solid #ccc', 
             borderRadius: '4px', 
@@ -83,6 +84,13 @@ const WelcomeComponent: React.FC<WelcomeComponentProps> = ({ onQuestionClick }) 
               sx={{ fontWeight: 500, fontFamily: 'Source Sans Pro' }}
             >
               Portfolio
+            </Button>
+            <Button
+              variant="outlined"
+              onClick={() => handleSelect(selectedQuestion,'Uploaded Dataset')}
+              sx={{ fontWeight: 500, fontFamily: 'Source Sans Pro' }}
+            >
+              Uploaded Dataset
             </Button>
           </Box>
         </DialogContent>

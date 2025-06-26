@@ -1,6 +1,7 @@
 "use client";
 import React, { createContext, useState, useEffect, ReactNode } from 'react';
 import { Chat } from '../types/index';
+import { table } from 'console';
 
 interface ChatContextType {
   messages: Message[];
@@ -17,6 +18,8 @@ interface Message {
   query: string;
   is_user: boolean;
   type?: string;
+  table_name?: string;
+  schema_name?: string;
 }
 
 export const ChatContext = createContext<ChatContextType | undefined>(undefined);
@@ -44,7 +47,15 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const handleSendMessage = async (message: string) => {
     setIsLoading(true);
-    const newMessage: Message = { query: message, is_user: true };
+    let newMessage: Message = { query: message, is_user: true, table_name: '', schema_name: '' };
+    let uploadedDataset = false;
+    let newUploadedDataset = { query: message, is_user: true };
+    if(message.includes('Uploaded Dataset') || message.includes('uploaded dataset')) {
+      let table_name = localStorage.getItem('table_name') || '';
+      let schema_name = localStorage.getItem('schema_name') || '';
+      uploadedDataset = true;
+      newUploadedDataset.query = message + `\nTable Name: ${table_name}\nSchema Name: ${schema_name}`;
+    }
     const updatedMessages = [...messages, newMessage];
     setMessages(updatedMessages);
   
@@ -65,7 +76,7 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       //setConversationCounter((prev) => prev + 1);
     }
     updateChat(chatId, updatedMessages);
-    // Determine endpoint based on message content
+    
     // Determine endpoint based on message content
     let endpoint = 'https://dqagent-fucjdkcxa5chcfbx.eastus2-01.azurewebsites.net/data_quality';
     if (message.toLowerCase().includes('profiling')) {
@@ -82,7 +93,7 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           method: 'POST',
           headers: { 'Content-Type': 'application/json', },
           
-          body: JSON.stringify(newMessage),
+          body: JSON.stringify(uploadedDataset? newUploadedDataset : newMessage),
         }
       );
   
