@@ -1,7 +1,6 @@
 "use client";
 import React, { createContext, useState, useEffect, ReactNode } from 'react';
 import { Chat } from '../types/index';
-import { table } from 'console';
 
 interface ChatContextType {
   messages: Message[];
@@ -47,12 +46,12 @@ export const ChatProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const handleSendMessage = async (message: string) => {
     setIsLoading(true);
-    let newMessage: Message = { query: message, is_user: true, table_name: '', schema_name: '' };
+    const newMessage: Message = { query: message, is_user: true, table_name: '', schema_name: '' };
     let uploadedDataset = false;
-    let newUploadedDataset = { query: message, is_user: true };
+    const newUploadedDataset = { query: message, is_user: true };
     if(message.includes('Uploaded Dataset') || message.includes('uploaded dataset')) {
-      let table_name = localStorage.getItem('table_name') || '';
-      let schema_name = localStorage.getItem('schema_name') || '';
+      const table_name = localStorage.getItem('table_name') || '';
+      const schema_name = localStorage.getItem('schema_name') || '';
       uploadedDataset = true;
       newUploadedDataset.query = message + `\nTable Name: ${table_name}\nSchema Name: ${schema_name}`;
     }

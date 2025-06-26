@@ -12,12 +12,14 @@ interface AIAgentsPanelProps {
 type UploadType = 'data' | 'schema' | null;
 
 const AIAgentsPanel: React.FC<AIAgentsPanelProps> = ({ isOpen, runningRules, isLoading }) => {
-  if (!isOpen) return null;
-
   const dataFileInputRef = useRef<HTMLInputElement>(null);
   const schemaFileInputRef = useRef<HTMLInputElement>(null);
   // const [uploading, setUploading] = useState(false);
   const [uploadingType, setUploadingType] = useState<UploadType>(null);
+  
+  if (!isOpen) return null;
+
+  
   // runningRules = ['City is blank','State is blank','Invalid Postal Code', 'Invalid State Format'];
 
   // Placeholder handlers for file upload
@@ -60,7 +62,7 @@ const AIAgentsPanel: React.FC<AIAgentsPanelProps> = ({ isOpen, runningRules, isL
         alert('File upload failed.');
       }
     } catch (error) {
-      alert('Error uploading file.');
+      alert('Error uploading file.'+error);
     } finally {
       // setUploading(false);
       setUploadingType(null);
